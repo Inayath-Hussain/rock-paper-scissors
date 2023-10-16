@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone Paper Scissors</title>
+
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&family=Dangrek&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- score card container-->
+    <section>
+        <div class="first-section">
+            <h1>ROCK PAPER SCISSORS</h1>
+
+            <div class="score-card-container">
+                <div class="score-card white-bg">
+                    <div>
+                        <p>COMPUTER</p>
+                        <p>SCORE</p>
+                    </div>
+                    <p id="computer-score">0</p>
+                </div>
+
+                <div class="score-card white-bg">
+                    <div>
+                        <p>YOUR</p>
+                        <p>SCORE</p>
+                    </div>
+                    <p id="user-score">0</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section>
+
+        <div>
+            <div class="outer-container">
+                <!-- triangle -->
+                <div class="center-line"></div>
+                <div class="right-line"></div>
+                <div class="left-line"></div>
+    
+                <img data-option-id="0" id="rock" title="rock" src="assets/icon-rock.png" alt="rock">
+                <img data-option-id="1" id="scissor" title="scissor" src="assets/icon-scissor.png" alt="scissor">
+                <img data-option-id="2" id="paper" title="paper" src="assets/icon-paper.png" alt="paper">
+            </div>
+        </div>
+
+        <div class="row-flex hidden">
+            <img class="paper" src="assets/icon-paper.png" alt="">
+
+            <div class="round-result">
+                <p>YOU WIN</p>
+                <p>AGAINST PC</p>
+
+                <button id="play-again" class="white-bg play-again-btn">PLAY AGAIN</button>
+            </div>
+
+            <img class="scissor" src="assets/icon-scissor.png" alt="">
+        </div>
+
+    </section>
+
+
+    <section class="rules-section">
+        <div class="rules hidden">
+            <!-- close button -->
+            <button id="rules-close-button">X</button>
+
+            <h2>Game Rules</h2>
+            <ul>
+                <li>Rock beats scissors, scissors beat paper, and paper beats rock.</li>
+                <li>Agree ahead of time whether you’ll count off “rock, paper, scissors, shoot” or just “rock, paper, scissors.”</li>
+                <li>Use rock, paper, scissors to settle minor decisions or simply play to pass the time</li>
+                <li>If both players lay down the same hand, each player lays down another hand</li>
+            </ul>
+
+        </div>
+
+        <button id="rules-button">RULES</button>
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

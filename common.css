@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #8CC461;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+
+    overflow: hidden;
+}
+
+.white-bg {
+    background-color: #fff;
+}
+
+
+.rules-section {
+    width: 320px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 20px;
+
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+#rules-button {
+    background: transparent;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 0.5rem 1rem;
+
+    border: 2px solid #fff;
+    border-radius: 12px;
+
+    color: inherit;
+
+    cursor: pointer;
+}
+
+#rules-button:hover {
+    background: #fff;
+    color: #8CC461;
+}
+
+.rules {
+    position: relative;
+    border: 7px solid #fff;
+    background: #004429;
+
+    padding: 1.5rem 0.5rem 1.5rem 0;
+
+    border-radius: 16px;
+}
+
+#rules-close-button {
+    font-family: 'Dangrek', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    background-color: #FF0000;
+    border: 5px solid #fff;
+    border-radius: 50%;
+
+    width: 60px;
+    height: 60px;
+
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    color: #fff;
+
+    cursor: pointer;
+}
+
+.rules>h2 {
+    font-weight: 500;
+    font-size: 28px;
+    text-align: center;
+    margin: 0;
+}
+
+ul {
+    list-style-type: square;
+}
+
+li::marker {
+    color: #FFD600;
+    font-size: 20px;
+}
+
+li {
+    text-align: left;
+    margin: 15px 0;
+}
+
+
+.play-again-btn {
+    color: #6B6B6B;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+}
+
+
+.hidden {
+    display: none !important;
+}
