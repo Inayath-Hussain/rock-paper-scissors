@@ -11,11 +11,13 @@ const choiceBtns = document.querySelectorAll('.outer-container img')
 const computerScoreCard = document.getElementById('computer-score')
 const userScoreCard = document.getElementById('user-score')
 
-
+// containers
 const gameControls = document.querySelector('.outer-container')
 const roundResultContainer = document.querySelector('.row-flex')
 const roundResultText = document.querySelector('.round-result')
 
+// play again
+const playAgainBtn = document.getElementById('play-again')
 
 // event listeners
 showRulesBtn.addEventListener('click', (e) => {
@@ -30,6 +32,15 @@ choiceBtns.forEach(btn => {
     btn.addEventListener('click', computeRound)
 })
 
+
+playAgainBtn.addEventListener('click', resetUI)
+
+
+window.addEventListener('load', (e) => {
+    console.log(getScores())
+    computerScoreCard.innerText = scores.computer
+    userScoreCard.innerText = scores.user
+})
 
 
 const player = {
@@ -67,6 +78,8 @@ function computeRound(e) {
     if (winner) {
         // update scoreboard
         scores[winner]++
+        computerScoreCard.innerText = scores.computer
+        userScoreCard.innerText = scores.user
 
         // save scores to localStorage
         saveToLocalStorage()
@@ -123,7 +136,7 @@ function getWinner(userChoice, systemChoice) {
 
 
 function getScores() {
-    return JSON.parse(localStorage.getItem('scores'))
+    return JSON.parse(localStorage.getItem('score'))
 }
 
 function saveToLocalStorage() {
@@ -134,16 +147,22 @@ function saveToLocalStorage() {
 function updateUI(userChoice, systemChoice, winner) {
     gameControls.classList.add(['hidden'])
 
-    roundResultContainer.firstChild.src = `assets/icon-${userChoice}.png`
-    roundResultContainer.lastChild.src = `assets/icon-${systemChoice}.png`
+    roundResultContainer.firstElementChild.src = `assets/icon-${userChoice}.png`
+    roundResultContainer.firstElementChild.classList = userChoice
+
+    roundResultContainer.lastElementChild.src = `assets/icon-${systemChoice}.png`
+    roundResultContainer.lastElementChild.classList = systemChoice
 
     let firstElement = document.createElement('p')
     let secondElement = document.createElement('p')
 
     switch (winner) {
+
         case player.user:
             firstElement.innerText = 'YOU WIN'
             secondElement.innerText = 'AGAINST PC'
+
+            AddNextButton()
             break
 
         case player.computer:
@@ -158,9 +177,33 @@ function updateUI(userChoice, systemChoice, winner) {
 
     const firstChild = roundResultText.children.item(0)
     const secondChild = roundResultText.children.item(1)
-    console.log(roundResultText.children.item(0), secondChild)
+
     roundResultText.replaceChild(firstElement, firstChild)
     roundResultText.replaceChild(secondElement, secondChild)
 
     roundResultContainer.classList.remove(['hidden'])
 }
+
+
+function AddNextButton() {
+    const next = document.createElement('a')
+    const button = document.createElement('button')
+    button.innerText = 'NEXT'
+
+    next.href = 'you won.html'
+    next.id = 'next'
+    next.style.display = 'inline-block'
+    next.appendChild(button)
+
+    showRulesBtn.insertAdjacentElement('afterend', next)
+}
+
+
+function resetUI() {
+    const next = document.getElementById('next')
+
+    if (next) next.remove()
+    roundResultContainer.classList.add('hidden')
+    gameControls.classList.remove('hidden')
+}
+

@@ -60,7 +60,6 @@ section:nth-child(1) {
 
 #computer-score,
 #user-score {
-    font-size: 100%;
     color: #252525;
 
     font-size: 4.5rem;
@@ -217,11 +216,6 @@ img {
 
     .score-card {
         width: 12vw;
-    }
-
-    #pc-score,
-    #user-score {
-        font-size: 3.5rem;
     }
 
 
