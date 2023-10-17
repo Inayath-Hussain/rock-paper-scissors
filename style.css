@@ -185,7 +185,7 @@ img {
     justify-content: flex-start;
     align-items: center;
 
-    gap: 10vw;
+    gap: 7vw;
 }
 
 .round-result>p {
@@ -194,13 +194,31 @@ img {
 }
 
 .round-result>p:nth-child(1) {
-    font-size: 30px;
+    font-size: 35px;
     margin: 0;
 }
 
 .round-result>p:nth-child(2) {
     font-size: 20px;
     margin: 0 0 20px 0;
+}
+
+.col-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 35px;
+}
+
+.col-flex p {
+    z-index: 10;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.win {
+    box-shadow: 0 0 0 85px #2E9A2563, 0 0 0 60px #1DA82BC9, 0 0 0 35px #3B6720;
 }
 
 

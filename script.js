@@ -147,11 +147,22 @@ function saveToLocalStorage() {
 function updateUI(userChoice, systemChoice, winner) {
     gameControls.classList.add(['hidden'])
 
-    roundResultContainer.firstElementChild.src = `assets/icon-${userChoice}.png`
-    roundResultContainer.firstElementChild.classList = userChoice
+    const playersChoiceElement = {
+        user: roundResultContainer.firstElementChild.children.item(1),
+        computer: roundResultContainer.lastElementChild.children.item(1)
+    }
 
-    roundResultContainer.lastElementChild.src = `assets/icon-${systemChoice}.png`
-    roundResultContainer.lastElementChild.classList = systemChoice
+    // using img which represents their choice
+    playersChoiceElement.user.src = `assets/icon-${userChoice}.png`
+    playersChoiceElement.user.classList = userChoice
+
+    playersChoiceElement.computer.src = `assets/icon-${systemChoice}.png`
+    playersChoiceElement.computer.classList = systemChoice
+
+    // adding box shadow to winner img choice
+    if (winner) {
+        playersChoiceElement[winner].classList.add('win')
+    }
 
     let firstElement = document.createElement('p')
     let secondElement = document.createElement('p')
