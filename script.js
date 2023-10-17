@@ -1,5 +1,5 @@
 // query selectors
-// rules
+// rules section
 const showRulesBtn = document.getElementById('rules-button')
 const closeRulesBtn = document.getElementById('rules-close-button')
 const rulesDiv = document.getElementsByClassName('rules').item(0)
@@ -20,6 +20,7 @@ const roundResultText = document.querySelector('.round-result')
 const playAgainBtn = document.getElementById('play-again')
 
 // event listeners
+// show and hide rules
 showRulesBtn.addEventListener('click', (e) => {
     rulesDiv.classList.toggle('hidden');
 })
@@ -37,7 +38,6 @@ playAgainBtn.addEventListener('click', resetUI)
 
 
 window.addEventListener('load', (e) => {
-    console.log(getScores())
     computerScoreCard.innerText = scores.computer
     userScoreCard.innerText = scores.user
 })
@@ -60,34 +60,32 @@ const options = {
 }
 
 
+// picks a random number from 0 to 3 and returns mapped option
 function selectSystemChoice() {
     const randomNum = Math.floor(Math.random() * 3)
     return options[randomNum]
 }
 
 
+// picks comuter choice and evaluates result
 function computeRound(e) {
     const userChoice = options[e.target.getAttribute('data-option-id')]
     const systemChoice = selectSystemChoice()
 
-    console.log(userChoice, systemChoice)
-
     const winner = getWinner(userChoice, systemChoice)
-    console.log(winner)
 
     if (winner) {
-        // update scoreboard
+        // update score
         scores[winner]++
+        // update scoreboard
         computerScoreCard.innerText = scores.computer
         userScoreCard.innerText = scores.user
 
-        // save scores to localStorage
         saveToLocalStorage()
     }
 
     // update UI
     updateUI(userChoice, systemChoice, winner)
-
 }
 
 
@@ -144,22 +142,25 @@ function saveToLocalStorage() {
 }
 
 
+// hides game controller and displays round result
 function updateUI(userChoice, systemChoice, winner) {
     gameControls.classList.add(['hidden'])
 
+
+    // img element of both user and computer choices
     const playersChoiceElement = {
         user: roundResultContainer.firstElementChild.children.item(1),
         computer: roundResultContainer.lastElementChild.children.item(1)
     }
 
-    // using img which represents their choice
+    // changing img source to fit choices picked
     playersChoiceElement.user.src = `assets/icon-${userChoice}.png`
     playersChoiceElement.user.classList = userChoice
 
     playersChoiceElement.computer.src = `assets/icon-${systemChoice}.png`
     playersChoiceElement.computer.classList = systemChoice
 
-    // adding box shadow to winner img choice
+    // adding box shadow to img of winner's choice
     if (winner) {
         playersChoiceElement[winner].classList.add('win')
     }
@@ -167,13 +168,14 @@ function updateUI(userChoice, systemChoice, winner) {
     let firstElement = document.createElement('p')
     let secondElement = document.createElement('p')
 
+    // updates result text
     switch (winner) {
 
         case player.user:
             firstElement.innerText = 'YOU WIN'
             secondElement.innerText = 'AGAINST PC'
 
-            AddNextButton()
+            addNextButton()
             break
 
         case player.computer:
@@ -196,20 +198,20 @@ function updateUI(userChoice, systemChoice, winner) {
 }
 
 
-function AddNextButton() {
+function addNextButton() {
     const next = document.createElement('a')
     const button = document.createElement('button')
     button.innerText = 'NEXT'
 
     next.href = 'you won.html'
     next.id = 'next'
-    next.style.display = 'inline-block'
     next.appendChild(button)
 
     showRulesBtn.insertAdjacentElement('afterend', next)
 }
 
 
+// hides roundResult, display's game controller and removes next button
 function resetUI() {
     const next = document.getElementById('next')
 
